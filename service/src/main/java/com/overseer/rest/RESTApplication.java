@@ -1,16 +1,15 @@
 package com.overseer.rest;
-import java.util.HashSet;
-import java.util.Set;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
 
-@ApplicationPath("/")
-public class RESTApplication extends Application {
-	  @Override
-	    public Set<Class<?>> getClasses() {
-	        final Set<Class<?>> classes = new HashSet<Class<?>>();
-	        // register root resource
-	        classes.add(HealthCheckService.class);
-	        return classes;
-	    }
+import javax.ws.rs.ApplicationPath;
+import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.server.ResourceConfig;
+
+@ApplicationPath("api")
+public class RESTApplication extends ResourceConfig {
+
+	public RESTApplication() {
+		packages("com.overseer.rest");
+		register(JacksonFeature.class);
+	} 
+
 }

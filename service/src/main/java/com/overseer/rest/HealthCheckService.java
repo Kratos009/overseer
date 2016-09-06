@@ -12,6 +12,7 @@ import com.overseer.lib.exceptions.PasswordHashGeneratorNotFoundException;
 
 @Path("/health")
 public class HealthCheckService {
+	
 	@GET
 	public String helloWorld() {
 //        PasswordHashGeneratorFactory factory = new DefaultPasswordHashGeneratorFactory();
@@ -28,7 +29,7 @@ public class HealthCheckService {
 //			e.printStackTrace();
 //		}
 //        
-		return "Hello Kratos!";
+		return "Hello Kratos! How are you!";
 	}
 
 }

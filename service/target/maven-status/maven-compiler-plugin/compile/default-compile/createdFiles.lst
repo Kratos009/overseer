@@ -1,6 +1,7 @@
 com/overseer/lib/PasswordHashGeneratorFactory.class
 com/overseer/rest/RESTApplication.class
 com/overseer/lib/PasswordHashGenerator.class
+com/overseer/user/information/Address.class
 com/overseer/lib/DefaultPasswordHashGeneratorFactory.class
 com/overseer/lib/PBKDF2PasswordHashGenerator.class
 com/overseer/credentials/UserCredentials.class

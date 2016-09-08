@@ -12,5 +12,6 @@
         <property name="hibernate.default_schema">CredentialInformation</property>
 		<!-- List of XML mapping files -->
 		<mapping resource="UserCredentials.hbm.xml" />
+		<mapping resource="ConfigurationProperty.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

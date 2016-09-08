@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import com.overseer.lib.IPasswordHashGenerator;
 import com.overseer.lib.IPasswordHashGeneratorFactory;
-import com.overseer.lib.PropertiesCache;
+import com.overseer.util.PropertiesCache;
 import com.overseer.lib.exceptions.PasswordHashGeneratorNotFoundException;
 
 public class CredentialService implements ICredentialService {

@@ -1,21 +1,13 @@
-package com.overseer.lib;
-
-import java.io.IOException;
-import java.io.InputStream;
+package com.overseer.util;
 import java.util.Properties;
-
 
 public class PropertiesCache {
 
-	private final Properties configProp = new Properties();
+	private Properties configProp = null;
 
 	private PropertiesCache() {
-		InputStream in = (InputStream) this.getClass().getClassLoader().getResourceAsStream("app.properties");
-		try {
-			configProp.load(in);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		IConfigurationPropertyDao configurationPropertyDao =  new ConfigurationPropertyDao();
+		configProp = configurationPropertyDao.getConfigurationProperties();
 	}
 
 	private static class LazyHolder {
@@ -33,5 +25,4 @@ public class PropertiesCache {
 	public String getProperty(String key, String defaultValue) {
 		return configProp.getProperty(key, defaultValue);
 	}
-
 }

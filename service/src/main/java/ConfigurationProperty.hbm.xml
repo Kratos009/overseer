@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.overseer.util.ConfigurationProperty" table="properties" schema="configuration">
+		<meta attribute="class-description">The class contains configuration properties.</meta>
+		<id name="propertyName" column="property_name" type="string" />
+		<property name="propertyValue" column="property_value" type="string" />
+		<property name="createdUsername" column="created_username" type="string" />
+		<property name="updatedUsername" column="updated_username" type="string" />
+		<property name="createdTimestamp" column="created_timestamp" type="timestamp" />
+		<property name="updatedTimestamp" column="updated_timestamp" type="timestamp" />
+	</class>
+</hibernate-mapping>

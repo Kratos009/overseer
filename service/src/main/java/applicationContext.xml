@@ -13,8 +13,10 @@
 	<context:component-scan base-package="com.nextinstruction.services" />
 
 	<bean id="passwordHashGeneratorFactory" class="com.overseer.lib.DefaultPasswordHashGeneratorFactory"></bean>
-	<bean id="userCredentials" class="com.overseer.credentials.UserCredentials">
+	<bean id="userCredentialsDao" class="com.overseer.credentials.UserCredentialsDao"></bean>
+	<bean id="credentialService" class="com.overseer.credentials.CredentialService">
 		<constructor-arg ref="passwordHashGeneratorFactory"></constructor-arg>
+		<constructor-arg ref="userCredentialsDao"></constructor-arg>	
 	</bean>
 	<bean id="pbkdf2PasswordHashGenerator" class="com.overseer.lib.PBKDF2PasswordHashGenerator"></bean>
 

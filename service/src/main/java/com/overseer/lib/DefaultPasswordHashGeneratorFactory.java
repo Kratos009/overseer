@@ -2,9 +2,9 @@ package com.overseer.lib;
 
 import com.overseer.lib.exceptions.PasswordHashGeneratorNotFoundException;
 
-public class DefaultPasswordHashGeneratorFactory implements PasswordHashGeneratorFactory {
+public class DefaultPasswordHashGeneratorFactory implements IPasswordHashGeneratorFactory {
 
-	public PasswordHashGenerator getPasswordHashCalculator(String passwordHashGeneratorName)
+	public IPasswordHashGenerator getPasswordHashCalculator(String passwordHashGeneratorName)
 			throws PasswordHashGeneratorNotFoundException {
 		switch (passwordHashGeneratorName) {
 		case "PBKDF2":

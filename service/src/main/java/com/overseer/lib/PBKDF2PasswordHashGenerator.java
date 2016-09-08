@@ -7,7 +7,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-public class PBKDF2PasswordHashGenerator implements PasswordHashGenerator {
+public class PBKDF2PasswordHashGenerator implements IPasswordHashGenerator {
 	@Override
 	public byte[] GeneratePasswordHash(final String password, final byte[] passwordSalt, final String hashAlgorithm,
 			final int iterations, final int derivedKeyLength) {

@@ -1,13 +1,6 @@
 package com.overseer.credentials;
 
-import java.security.SecureRandom;
-
-import com.overseer.lib.PasswordHashGenerator;
-import com.overseer.lib.PasswordHashGeneratorFactory;
-import com.overseer.lib.PropertiesCache;
-import com.overseer.lib.exceptions.PasswordHashGeneratorNotFoundException;
-
-public class UserCredentials implements CredentialService {
+public class UserCredentials {
 	private String uuid;
 	private String username;
 	private byte[] passwordHash;
@@ -17,47 +10,80 @@ public class UserCredentials implements CredentialService {
 	private int passwordHashIterationCount;
 	private int passwordHashDerivedKeyLength;
 	private int passwordSaltLength;
-	private PasswordHashGeneratorFactory passwordHashGeneratorFactory;
 
-	public UserCredentials(PasswordHashGeneratorFactory passwordHashGeneratorFactory) {
-		this.passwordHashGeneratorFactory = passwordHashGeneratorFactory;
+	public UserCredentials() {
 	}
 
-	@Override
-	public String SaveNewCredentails(String username, String password) {
-		try {
-			PasswordHashGenerator passwordHashGenerator = this.passwordHashGeneratorFactory.getPasswordHashCalculator(
-					PropertiesCache.getInstance().getProperty("passwordHashCalculator", "PBKDF2"));
-			SecureRandom sr = new SecureRandom();
-			this.username = username;
-			this.passwordSaltLength = Integer
-					.parseInt(PropertiesCache.getInstance().getProperty("passwordSaltLength", "64"));
-			this.passwordSalt = new byte[this.passwordSaltLength];
-			sr.nextBytes(this.passwordSalt);
-			this.passwordHashAlgorithm = PropertiesCache.getInstance().getProperty("passwordHashAlgorithm", "SHA256");
-			this.passwordHashIterationCount = Integer
-					.parseInt(PropertiesCache.getInstance().getProperty("passwordHashIterationCount", "20000"));
-			this.passwordHashDerivedKeyLength = Integer
-					.parseInt(PropertiesCache.getInstance().getProperty("passwordHashDerivedKeyLength", "256"));
-			this.passwordHash = passwordHashGenerator.GeneratePasswordHash(password, this.passwordSalt,
-					this.passwordHashAlgorithm, this.passwordHashIterationCount, this.passwordHashDerivedKeyLength);
-		} catch (PasswordHashGeneratorNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public String getUuid() {
+		return uuid;
 	}
 
-	@Override
-	public boolean AuthenticateCredentials(String username, String password) {
-		// TODO Auto-generated method stub
-		return false;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
-	@Override
-	public void ChangePassword(String username, String oldPassword, String newPassword) {
-		// TODO Auto-generated method stub
+	public String getUsername() {
+		return username;
+	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public byte[] getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(byte[] passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
+	public byte[] getPasswordSalt() {
+		return passwordSalt;
+	}
+
+	public void setPasswordSalt(byte[] passwordSalt) {
+		this.passwordSalt = passwordSalt;
+	}
+
+	public String getPasswordKeyDerivationFunction() {
+		return passwordKeyDerivationFunction;
+	}
+
+	public void setPasswordKeyDerivationFunction(String passwordKeyDerivationFunction) {
+		this.passwordKeyDerivationFunction = passwordKeyDerivationFunction;
+	}
+
+	public String getPasswordHashAlgorithm() {
+		return passwordHashAlgorithm;
+	}
+
+	public void setPasswordHashAlgorithm(String passwordHashAlgorithm) {
+		this.passwordHashAlgorithm = passwordHashAlgorithm;
+	}
+
+	public int getPasswordHashIterationCount() {
+		return passwordHashIterationCount;
+	}
+
+	public void setPasswordHashIterationCount(int passwordHashIterationCount) {
+		this.passwordHashIterationCount = passwordHashIterationCount;
+	}
+
+	public int getPasswordHashDerivedKeyLength() {
+		return passwordHashDerivedKeyLength;
+	}
+
+	public void setPasswordHashDerivedKeyLength(int passwordHashDerivedKeyLength) {
+		this.passwordHashDerivedKeyLength = passwordHashDerivedKeyLength;
+	}
+
+	public int getPasswordSaltLength() {
+		return passwordSaltLength;
+	}
+
+	public void setPasswordSaltLength(int passwordSaltLength) {
+		this.passwordSaltLength = passwordSaltLength;
 	}
 
 }

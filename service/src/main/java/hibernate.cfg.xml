@@ -6,9 +6,9 @@
 	<session-factory>
 		<property name="hibernate.dialect"> org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Heracles</property>
-		<property name="hibernate.connection.username">postgres</property>
-		<property name="hibernate.connection.password">kratos</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://overseer.cizjx8stweby.us-west-2.rds.amazonaws.com:5432/Heracles</property>
+		<property name="hibernate.connection.username">sciencedrill</property>
+		<property name="hibernate.connection.password">Gappi!23</property>
         <property name="hibernate.default_schema">CredentialInformation</property>
 		<!-- List of XML mapping files -->
 		<mapping resource="UserCredentials.hbm.xml" />

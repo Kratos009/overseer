@@ -1,6 +1,7 @@
 package com.overseer.credentials;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -17,7 +18,10 @@ public class UserCredentialsDao implements IUserCredentialsDao {
 		UserCredentials userCredentials = null;
 		try {
 			tx = session.beginTransaction();
-			userCredentials = (UserCredentials) session.get(UserCredentials.class, username);
+			String hql = "FROM com.overseer.credentials.UserCredentials WHERE username = :username";
+			Query query = session.createQuery(hql);
+			query.setParameter("username", username);
+			userCredentials = (UserCredentials) query.uniqueResult();
 			tx.commit();
 		} catch (HibernateException ex) {
 			if (tx != null)

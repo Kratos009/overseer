@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.overseer.registration.RegistrationDetails" table="registrationdetails" schema="userprofile">
+		<meta attribute="class-description">The class contains registration details of the user.</meta>
+		<id name="uuid" column="uuid" type="string" />
+		<property name="firstName" column="first_name" type="string" />
+		<property name="lastName" column="last_name" type="string" />
+		<property name="middleName" column="middle_name" type="string" />
+		<property name="emailAddress" column="email_address" type="string" />
+		<property name="phoneNumber" column="phone_number" type="string" />
+		<property name="country" column="country" type="string" />
+		<property name="state" column="state" type="string" />
+		<property name="city" column="city" type="string" />
+		<property name="registrationDate" column="registration_date" type="timestamp" />
+	</class>
+</hibernate-mapping>

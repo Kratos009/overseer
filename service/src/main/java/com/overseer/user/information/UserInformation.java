@@ -3,25 +3,22 @@ package com.overseer.user.information;
 import java.util.Date;
 import java.util.List;
 
+import com.overseer.device.DeviceInformation;
+
 public class UserInformation {
 	private String uuid;
 	private String emailAddress;
 	private List<PhoneNumber> phoneNumbers;
 	private int passwordRejectionCount;
 	private UserStatus userStatus;
-	private String honorofic;
 	private String firstName;
 	private String lastName;
 	private String middleName;
-	private String corporateName;
-	private String shortName;
-	private String nickName;
 	private String uniqueIdentifierType;
 	private String uniqueIdentifier;
 	private Gender gender;
 	private List<Address> addresses;
 	private Date dateOfBirth;
-	private Date dateOfDeath;
 	private Date registrationTimestamp;
 	private Date lastLoginTimestamp;
 	private Date lastPasswordUpdateTimestamp;
@@ -67,14 +64,6 @@ public class UserInformation {
 		this.userStatus = userStatus;
 	}
 
-	public String getHonorofic() {
-		return honorofic;
-	}
-
-	public void setHonorofic(String honorofic) {
-		this.honorofic = honorofic;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -97,30 +86,6 @@ public class UserInformation {
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
-	}
-
-	public String getCorporateName() {
-		return corporateName;
-	}
-
-	public void setCorporateName(String corporateName) {
-		this.corporateName = corporateName;
-	}
-
-	public String getShortName() {
-		return shortName;
-	}
-
-	public void setShortName(String shortName) {
-		this.shortName = shortName;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
 	}
 
 	public String getUniqueIdentifierType() {
@@ -161,14 +126,6 @@ public class UserInformation {
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
-	}
-
-	public Date getDateOfDeath() {
-		return dateOfDeath;
-	}
-
-	public void setDateOfDeath(Date dateOfDeath) {
-		this.dateOfDeath = dateOfDeath;
 	}
 
 	public Date getRegistrationTimestamp() {

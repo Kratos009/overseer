@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+ <hibernate-mapping>
+    <class name="com.overseer.device.DeviceInformation" table="device_information" schema="deviceprofile">
+          <id name="deviceId" column="device_id" type="string"/>
+          <property name="deviceType" column="device_type">
+             <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.overseer.device.DeviceType</param>
+             </type>
+          </property>
+          <property name="operatingSystem" column="operating_system" type="string"/>
+          <property name="createdTimestamp" column="created_timestamp" type="timestamp"/>
+          <property name="lastUpdatedTimestamp" column="last_updated_timestamp" type="timestamp"/>
+          <one-to-one name="mobileSpecificInformation" class="com.overseer.device.MobileSpecificInformation" cascade="all" lazy="false"></one-to-one>
+          <one-to-one name="screenInformation" class="com.overseer.device.ScreenInformation" cascade="all" lazy="false"></one-to-one>
+          <set name="browsers" cascade="all" lazy="false">
+            <key column="device_id" not-null="true"/>
+            <one-to-many class="com.overseer.device.BrowserInformation"/>
+          </set>
+    </class>
+    
+    <class name="com.overseer.device.BrowserInformation" table="browser_information" schema="deviceprofile">
+          <id name="browserId" column="browser_id" type="string"></id>
+          <property name="canvasFingerprint" column="canvas_fingerprint_sha256" type="string"/>
+          <property name="name" column="name" type="string"/> 
+          <property name="majorVersion" column="major_version" type="integer"/>
+          <property name="minorVersion" column="minor_version" type="integer"/>
+          <property name="userAgent" column="user_agent" type="string"/> 
+          <property name="httpAccept" column="http_accept" type="string"/> 
+          <property name="httpAcceptChars" column="http_accept_chars" type="string"/> 
+          <property name="httpAcceptEncoding" column="http_accept_encoding" type="string"/> 
+          <property name="httpAcceptLanguage" column="http_accept_language" type="string"/> 
+          <property name="httpReferer" column="http_referer" type="string"/> 
+          <property name="ecmaScriptVersion" column="ecma_script_version" type="integer"/> 
+          <property name="fontListPipeSeperated" column="font_list" type="string"/>
+          <set name="plugins" cascade="all" lazy="false">
+             <key column="browser_id" not-null="true"/>
+             <one-to-many class="com.overseer.device.BrowserPluginInformation"/>
+          </set>
+          <set name="mimeTypes" cascade="all" lazy="false">
+             <key column="browser_id" not-null="true"/>
+             <one-to-many class="com.overseer.device.BrowserMimeTypeInformation"/>
+          </set>
+    </class>
+    
+    <class name="com.overseer.device.MobileSpecificInformation" table="mobile_specific_device_information" schema="deviceprofile">
+         <id name="deviceId" column="device_id" type="string">
+            <generator class="foreign">
+               <param name="property">deviceInformation</param>
+            </generator>
+         </id>
+         <property name="hardwareId" column="hardware_id" type="string"/>
+         <property name="simId" column="sim_id" type="string"/>
+         <property name="phoneNumber" column="phone_number" type="string"/>
+         <property name="deviceModel" column="device_model" type="string"/>
+         <property name="deviceName" column="device_name" type="string"/>
+         <property name="operatingSystemId" column="operating_system_id" type="string"/>
+         <property name="operatingSystemVersion" column="operating_system_version" type="string"/>
+         <property name="locationAreaCode" column="location_area_code" type="string"/>
+         <property name="cellTowerId" column="cell_tower_id" type="string"/>
+         <property name="wapClientId" column="wap_client_id" type="string"/>
+         <property name="numberOfAddressBookEntries" column="number_of_address_book_entries" type="integer"/>
+         <property name="carrierCode" column="carrier_code" type="string"/>
+         <property name="countryCode" column="country_code" type="string"/>
+         <one-to-one name="deviceInformation" class="com.overseer.device.DeviceInformation" constrained="true"></one-to-one>
+    </class>
+    
+     <class name="com.overseer.device.BrowserPluginInformation" table="plugin_information" schema="deviceprofile">
+         <id name="id" column="id" type="long">
+             <generator class="identity"></generator>
+         </id>
+         <property name="name" column="plugin_name" type="string"></property>
+         <property name="description" column="description" type="string"/>
+         <property name="version" column="version" type="string"/>
+     </class>
+    
+    <class name="com.overseer.device.BrowserMimeTypeInformation" table="mime_type_information" schema="deviceprofile">
+         <id name="id" column="id" type="long">
+             <generator class="identity"></generator>
+         </id>
+         <property name="name" column="mime_type_name" type="string"/>
+         <property name="description" column="description" type="string"/>
+         <property name="suffixListPipeSeperated" column="suffix_list" type="string"/>
+    </class>
+    
+    <class name="com.overseer.device.ScreenInformation" table="screen_information" schema="deviceprofile">
+         <id name="deviceId" column="device_id" type="string">
+            <generator class="foreign">
+               <param name="property">deviceInformation</param>
+            </generator>
+         </id>
+         <property name="height" column="height" type="integer"/>
+         <property name="width" column="width" type="integer"/>
+         <property name="colorDepth" column="color_depth" type="integer"/>
+         <property name="pixelDepth" column="pixel_depth" type="integer"/>
+         <property name="screenOrientationType" column="screen_orientation_type" type="integer"/>  
+         <property name="screenOrientationAngle" column="screen_orientation_angle" type="integer"/>     
+         <one-to-one name="deviceInformation" class="com.overseer.device.DeviceInformation" constrained="true"></one-to-one>
+    </class>
+    
+   
+    
+ </hibernate-mapping>

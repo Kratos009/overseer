@@ -9,7 +9,9 @@
 		<property name="hibernate.connection.url">jdbc:postgresql://overseer.cizjx8stweby.us-west-2.rds.amazonaws.com:5432/Heracles</property>
 		<property name="hibernate.connection.username">sciencedrill</property>
 		<property name="hibernate.connection.password">Gappi!23</property>
-        <property name="hibernate.default_schema">CredentialInformation</property>
+		
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
 		<!-- List of XML mapping files -->
 		<mapping resource="UserCredentials.hbm.xml" />
 		<mapping resource="ConfigurationProperty.hbm.xml" />
